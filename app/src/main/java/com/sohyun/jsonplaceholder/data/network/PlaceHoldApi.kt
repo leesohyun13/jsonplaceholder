@@ -33,7 +33,6 @@ interface PlaceHoldApi {
         @Body body: Map<String, String>
     )
 
-
     companion object {
         const val PLACE_HOLD_BASE_URL = "https://jsonplaceholder.typicode.com/"
         const val LIMIT_COUNT = 10

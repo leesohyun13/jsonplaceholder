@@ -1,5 +1,7 @@
-package com.sohyun.jsonplaceholder.view
+package com.sohyun.jsonplaceholder
 
+import android.content.Context
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +22,10 @@ fun RecyclerView.addItems(items: List<Any>?) {
     }
 }
 
-
 fun <T> MutableLiveData<T>.notifyObserver() {
     this.postValue(this.value)
+}
+
+fun showToastMessage(context: Context, content: String) {
+    Toast.makeText(context, content, Toast.LENGTH_SHORT).show()
 }
