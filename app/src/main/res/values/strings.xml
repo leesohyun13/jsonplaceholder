@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Jsonplaceholder</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_button">삭제하기</string>
+    <string name="update_button">수정하기</string>
 </resources>
