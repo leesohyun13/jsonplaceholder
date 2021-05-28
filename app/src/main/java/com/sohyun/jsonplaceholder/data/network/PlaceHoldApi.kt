@@ -9,7 +9,7 @@ interface PlaceHoldApi {
     suspend fun getPosts(
         @Query(SCHEMA_START) _start: Int,
         @Query(SCHEMA_LIMIT) _limit: Int = LIMIT_COUNT,
-        ): List<Post>
+    ): List<Post>
 
     @GET(SUB_SEARCH_POST)
     suspend fun searchPostItem(
@@ -34,12 +34,12 @@ interface PlaceHoldApi {
 
 
     companion object {
-        const val PLACE_HOLD_BASE_URL = "https:!/jsonplaceholder.typicode.com/"
+        const val PLACE_HOLD_BASE_URL = "https://jsonplaceholder.typicode.com/"
         const val LIMIT_COUNT = 10
 
-        const val SUB_GET_POSTS = "post"
-        const val SUB_SEARCH_POST = "post/{id}"
-        const val SUB_GET_COMMENT = "post/{id}/comments"
+        const val SUB_GET_POSTS = "posts"
+        const val SUB_SEARCH_POST = "posts/{id}"
+        const val SUB_GET_COMMENT = "posts/{id}/comments"
 
         const val SCHEMA_START = "_start"
         const val SCHEMA_LIMIT = "_limit"
