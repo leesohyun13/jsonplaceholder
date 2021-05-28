@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sohyun.jsonplaceholder.R
+import com.sohyun.jsonplaceholder.data.model.Post
 import com.sohyun.jsonplaceholder.databinding.FragmentMainBinding
-import com.sohyun.jsonplaceholder.view.PostAdapter
+import com.sohyun.jsonplaceholder.view.detail.DetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentMainBinding
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var postAdapter: PostAdapter
@@ -28,7 +30,7 @@ class MainFragment : Fragment() {
         }
 
         binding.postRecyclerview.run {
-            postAdapter = PostAdapter()
+            postAdapter = PostAdapter(this@MainFragment)
             adapter = postAdapter
             layoutManager = LinearLayoutManager(requireContext())
 
@@ -52,5 +54,15 @@ class MainFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = MainFragment()
+    }
+
+    override fun clickedPost(post: Post) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_framelayout, DetailFragment.newInstance(post))
+            .commitNow()
+    }
+
+    override fun removePost(post: Post) {
+        TODO("Not yet implemented")
     }
 }

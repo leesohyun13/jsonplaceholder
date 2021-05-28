@@ -1,6 +1,5 @@
-package com.sohyun.jsonplaceholder.view
+package com.sohyun.jsonplaceholder.view.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,13 +8,15 @@ import com.sohyun.jsonplaceholder.databinding.ItemPostBinding
 import com.sohyun.jsonplaceholder.view.base.BaseRecyclerViewAdapter
 import com.sohyun.jsonplaceholder.view.base.BaseViewHolder
 
-class PostAdapter : BaseRecyclerViewAdapter<Post, PostAdapter.ViewHolder>(DiffCallback()) {
+class PostAdapter(
+    private val clickListener: OnItemClickListener
+) : BaseRecyclerViewAdapter<Post, PostAdapter.ViewHolder>(DiffCallback()) {
     inner class ViewHolder(private val binding: ItemPostBinding) :
         BaseViewHolder<Post>(binding.root) {
         private lateinit var item: Post
 
         init {
-            binding.postLayout.setOnClickListener {  }
+            binding.postLayout.setOnClickListener { clickListener.clickedPost(item) }
         }
 
         override fun bind(item: Post) {
@@ -28,7 +29,7 @@ class PostAdapter : BaseRecyclerViewAdapter<Post, PostAdapter.ViewHolder>(DiffCa
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
