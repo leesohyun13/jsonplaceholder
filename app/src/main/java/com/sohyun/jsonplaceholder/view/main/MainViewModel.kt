@@ -33,6 +33,14 @@ class MainViewModel @Inject constructor(
         isLoading.postValue(false)
     }
 
+    suspend fun deletePost(postId: Int) {
+        val result = postsRepository.deletePost(postId)
+        when (result) {
+            is NetworkStatus.Failure -> {}
+            is NetworkStatus.Success -> {}
+        }
+    }
+
     private val postPageObserver = Observer<Int> {
         viewModelScope.launch(Dispatchers.IO) { fetchPosts() }
     }

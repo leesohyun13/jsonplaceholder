@@ -19,7 +19,8 @@ class PostsRepositoryImpl @Inject constructor(
     override suspend fun getComments(id: Int): NetworkStatus<List<Comment>> =
         safeApiCall { placeHoldApi.getComments(id) }
 
-    override suspend fun deletePost(id: Int) = placeHoldApi.deletePost(id)
+    override suspend fun deletePost(id: Int): NetworkStatus<Unit> =
+        safeApiCall { placeHoldApi.deletePost(id) }
 
     // FIXME
     override suspend fun updateData(id: Int, content: String) = placeHoldApi.updateData(id, content)

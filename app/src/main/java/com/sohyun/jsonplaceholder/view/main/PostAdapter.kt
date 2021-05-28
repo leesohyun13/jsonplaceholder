@@ -17,6 +17,10 @@ class PostAdapter(
 
         init {
             binding.postLayout.setOnClickListener { clickListener.clickedPost(item) }
+            binding.delete.setOnClickListener {
+                clickListener.deletePost(item.id)
+                removeItem(item)
+            }
         }
 
         override fun bind(item: Post) {

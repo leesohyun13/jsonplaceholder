@@ -21,7 +21,7 @@ interface PlaceHoldApi {
         @Path(SCHEMA_PATH_ID) id: Int,
     ): List<Comment>
 
-    @POST(SUB_SEARCH_POST)
+    @DELETE(SUB_SEARCH_POST)
     suspend fun deletePost(
         @Path(SCHEMA_PATH_ID) id: Int,
     )
