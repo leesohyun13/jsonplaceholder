@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Jsonplaceholder</string>
+    <string name="comment_title">Comment</string>
     <string name="delete_button">삭제하기</string>
     <string name="update_button">수정하기</string>
 </resources>
