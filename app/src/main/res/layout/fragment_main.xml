@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.MainFragment">
+    tools:context=".view.main.MainFragment">
 
     <data>
         <variable
             name="viewmodel"
-            type="com.sohyun.jsonplaceholder.view.MainViewModel" />
+            type="com.sohyun.jsonplaceholder.view.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
