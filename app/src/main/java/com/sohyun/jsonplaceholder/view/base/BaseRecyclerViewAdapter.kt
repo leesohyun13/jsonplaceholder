@@ -15,8 +15,15 @@ abstract class BaseRecyclerViewAdapter<T, H : BaseViewHolder<T>>(diffCallback: D
     }
 
     open fun setData(newItems: List<T>) {
+        this.items.clear()
         this.items.addAll(newItems)
-        submitList(items)
+        submitList(items) // FIXME
+        notifyDataSetChanged()
+    }
+
+    open fun addData(newItems: List<T>) {
+        this.items.addAll(newItems)
+        submitList(items) // FIXME
         notifyDataSetChanged()
     }
 

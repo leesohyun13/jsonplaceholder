@@ -13,6 +13,14 @@ fun RecyclerView.setItems(items: List<Any>?) {
     }
 }
 
+@BindingAdapter("addItems")
+fun RecyclerView.addItems(items: List<Any>?) {
+    (this.adapter as? BaseRecyclerViewAdapter<Any, BaseViewHolder<Any>>)?.run {
+        items?.let { addData(items) }
+    }
+}
+
+
 fun <T> MutableLiveData<T>.notifyObserver() {
     this.postValue(this.value)
 }
