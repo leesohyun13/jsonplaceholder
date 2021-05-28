@@ -21,6 +21,7 @@ class DetailViewModel @Inject constructor(
     private val commentList = MutableLiveData<List<Comment>>().apply {
         value = arrayListOf()
     }
+    private val response = MutableLiveData("")
 
     suspend fun fetchComments(postId: Int) {
         val comment = postsRepository.getComments(postId)
@@ -28,22 +29,20 @@ class DetailViewModel @Inject constructor(
             is NetworkStatus.Success -> {
                 commentList.postValue(comment.data)
             }
-            is NetworkStatus.Failure -> {
-            }
+            is NetworkStatus.Failure -> response.postValue("댓글 정보를 가져오는데 실패했습니다.")
         }
     }
 
     fun update(postId: Int, data: HashMap<String, String>) {
         viewModelScope.launch(ioDispatcher) {
-            val response = postsRepository.updateData(postId, data)
-            when (response) {
-                is NetworkStatus.Failure -> {
-                }
-                is NetworkStatus.Success -> {
-                }
+            val result = postsRepository.updateData(postId, data)
+            when (result) {
+                is NetworkStatus.Failure -> response.postValue("게시물을 수정하는데 실패했습니다.")
+                is NetworkStatus.Success -> response.postValue("성공적으로 게시물을 수정했습니다.")
             }
         }
     }
 
+    fun getResponse(): LiveData<String> = response
     fun getCommentList(): LiveData<List<Comment>> = commentList
 }

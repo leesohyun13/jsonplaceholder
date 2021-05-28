@@ -15,7 +15,6 @@ class PostsRepositoryImpl @Inject constructor(
     override suspend fun searchPostItem(id: Int): NetworkStatus<Post> =
         safeApiCall { placeHoldApi.searchPostItem(id) }
 
-
     override suspend fun getComments(id: Int): NetworkStatus<List<Comment>> =
         safeApiCall { placeHoldApi.getComments(id) }
 

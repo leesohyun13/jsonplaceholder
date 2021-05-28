@@ -9,12 +9,11 @@ import com.sohyun.jsonplaceholder.view.base.BaseRecyclerViewAdapter
 import com.sohyun.jsonplaceholder.view.base.BaseViewHolder
 
 
-class CommentAdapter : BaseRecyclerViewAdapter<Comment, CommentAdapter.CommentViewHolder>(DiffCallback()) {
+class CommentAdapter :
+    BaseRecyclerViewAdapter<Comment, CommentAdapter.CommentViewHolder>(DiffCallback()) {
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) :
         BaseViewHolder<Comment>(binding.root) {
-        private lateinit var item: Comment
-
         override fun bind(item: Comment) {
             binding.comment.text = item.body
         }
