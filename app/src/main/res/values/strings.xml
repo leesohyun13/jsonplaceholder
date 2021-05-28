@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Jsonplaceholder</string>
+    <string name="array_select_update_item_title">업데이트할 것을 고르시오</string>
+    <string name="array_update_title">수정하기</string>
     <string name="comment_title">Comment</string>
     <string name="delete_button">삭제하기</string>
     <string name="update_button">수정하기</string>
+
+    <string name="update">수정하기</string>
+    <string name="no">취소</string>
 </resources>

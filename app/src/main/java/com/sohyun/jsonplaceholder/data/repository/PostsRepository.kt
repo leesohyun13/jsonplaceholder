@@ -9,5 +9,5 @@ interface PostsRepository {
     suspend fun searchPostItem(id: Int): NetworkStatus<Post>
     suspend fun getComments(id: Int): NetworkStatus<List<Comment>>
     suspend fun deletePost(id: Int): NetworkStatus<Unit>
-    suspend fun updateData(id: Int, content: String)
+    suspend fun updateData(id: Int, content: HashMap<String, String>): NetworkStatus<Unit>
 }

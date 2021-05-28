@@ -26,10 +26,11 @@ interface PlaceHoldApi {
         @Path(SCHEMA_PATH_ID) id: Int,
     )
 
+    @Headers("Content-Type: application/json; charset=utf-8")
     @PATCH(SUB_SEARCH_POST)
     suspend fun updateData(
-        @Path(SCHEMA_LIMIT) id: Int,
-        @Body body: String
+        @Path(SCHEMA_PATH_ID) id: Int,
+        @Body body: Map<String, String>
     )
 
 
@@ -44,7 +45,5 @@ interface PlaceHoldApi {
         const val SCHEMA_START = "_start"
         const val SCHEMA_LIMIT = "_limit"
         const val SCHEMA_PATH_ID = "id"
-        const val SCHEMA_FIELD_TITLE = "title"
-        const val SCHEMA_FIELD_BODY = "body"
     }
 }

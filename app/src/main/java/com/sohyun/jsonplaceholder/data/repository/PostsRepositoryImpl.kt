@@ -22,6 +22,6 @@ class PostsRepositoryImpl @Inject constructor(
     override suspend fun deletePost(id: Int): NetworkStatus<Unit> =
         safeApiCall { placeHoldApi.deletePost(id) }
 
-    // FIXME
-    override suspend fun updateData(id: Int, content: String) = placeHoldApi.updateData(id, content)
+    override suspend fun updateData(id: Int, content: HashMap<String, String>): NetworkStatus<Unit> =
+        safeApiCall { placeHoldApi.updateData(id, content) }
 }

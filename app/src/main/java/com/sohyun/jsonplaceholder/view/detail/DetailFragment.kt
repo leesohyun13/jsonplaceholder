@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sohyun.jsonplaceholder.R
 import com.sohyun.jsonplaceholder.data.model.Post
 import com.sohyun.jsonplaceholder.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,9 +49,76 @@ class DetailFragment : Fragment() {
                 adapter = commentAdapter
                 layoutManager = LinearLayoutManager(requireContext())
             }
+            update.setOnClickListener { selectDialog() }
         }
 
         return binding.root
+    }
+
+    private fun selectDialog() {
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setTitle(getString(R.string.array_select_update_item_title))
+                setItems(
+                    R.array.update_list
+                ) { dialog, which ->
+                    when (which) {
+                        0 -> {
+                            editDialog(UpdateType.TITLE)
+                        }
+                        1 -> {
+                            editDialog(UpdateType.BODY)
+                        }
+                    }
+                }
+            }
+            builder.create()
+        }
+        alertDialog?.show()
+    }
+
+    private fun editDialog(type: UpdateType) {
+        val content: String = when (type) {
+            UpdateType.TITLE -> binding.title.text.toString()
+            UpdateType.BODY -> binding.body.text.toString()
+        }
+        //
+        val editText = EditText(context).apply {
+            setText(content)
+        }
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setTitle(getString(R.string.array_update_title))
+                setView(editText)
+                setPositiveButton(
+                    R.string.update
+                ) { dialog, id ->
+                    val updateText = editText.text.toString()
+                    update(type, updateText)
+                    detailViewModel.update(
+                        post.id, hashMapOf(
+                            type.text to updateText
+                        )
+                    )
+                }
+                setNegativeButton(
+                    R.string.no
+                ) { dialog, id ->
+                    // do nothing
+                }
+            }
+            builder.create()
+        }
+        alertDialog?.show()
+    }
+
+    private fun update(type: UpdateType, string: String) {
+        when (type) {
+            UpdateType.TITLE -> binding.title.text = string
+            UpdateType.BODY -> binding.body.text = string
+        }
     }
 
     companion object {
