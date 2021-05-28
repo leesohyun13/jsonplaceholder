@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sohyun.jsonplaceholder.R
 import com.sohyun.jsonplaceholder.data.model.Post
 import com.sohyun.jsonplaceholder.databinding.FragmentDetailBinding
+import com.sohyun.jsonplaceholder.showToastMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -102,6 +103,10 @@ class DetailFragment : Fragment() {
                     R.string.update
                 ) { dialog, id ->
                     val updateText = editText.text.toString()
+                    if (updateText.isEmpty()) {
+                        showToastMessage(requireContext(),"글자를 입력해주세요.")
+                        return@setPositiveButton
+                    }
                     update(type, updateText)
                     detailViewModel.update(
                         post.id, hashMapOf(
