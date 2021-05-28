@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sohyun.jsonplaceholder.R
 import com.sohyun.jsonplaceholder.data.model.Post
 import com.sohyun.jsonplaceholder.databinding.FragmentMainBinding
+import com.sohyun.jsonplaceholder.showToastMessage
 import com.sohyun.jsonplaceholder.view.detail.DetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -49,6 +50,11 @@ class MainFragment : Fragment(), OnItemClickListener {
                 }
             })
         }
+
+        mainViewModel.getResponse().observe(viewLifecycleOwner, { response ->
+            if (response.isNullOrEmpty()) return@observe
+            showToastMessage(requireContext(), response)
+        })
 
         return binding.root
     }
