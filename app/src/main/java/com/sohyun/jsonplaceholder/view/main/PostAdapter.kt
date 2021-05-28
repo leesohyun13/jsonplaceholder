@@ -14,6 +14,10 @@ class PostAdapter : BaseRecyclerViewAdapter<Post, PostAdapter.ViewHolder>(DiffCa
         BaseViewHolder<Post>(binding.root) {
         private lateinit var item: Post
 
+        init {
+            binding.postLayout.setOnClickListener {  }
+        }
+
         override fun bind(item: Post) {
             this.item = item
             with(binding) {

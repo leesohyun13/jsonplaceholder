@@ -1,9 +1,10 @@
-package com.sohyun.jsonplaceholder.view
+package com.sohyun.jsonplaceholder.view.main
 
 import androidx.lifecycle.*
 import com.sohyun.jsonplaceholder.data.model.Post
 import com.sohyun.jsonplaceholder.data.network.NetworkStatus
 import com.sohyun.jsonplaceholder.data.repository.PostsRepository
+import com.sohyun.jsonplaceholder.view.notifyObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

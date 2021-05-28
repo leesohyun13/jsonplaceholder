@@ -3,6 +3,7 @@ package com.sohyun.jsonplaceholder.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sohyun.jsonplaceholder.R
+import com.sohyun.jsonplaceholder.view.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

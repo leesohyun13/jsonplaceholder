@@ -1,4 +1,4 @@
-package com.sohyun.jsonplaceholder.view
+package com.sohyun.jsonplaceholder.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sohyun.jsonplaceholder.databinding.FragmentMainBinding
+import com.sohyun.jsonplaceholder.view.PostAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
