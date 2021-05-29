@@ -86,13 +86,8 @@ class DetailFragment : Fragment() {
     }
 
     private fun editDialog(type: UpdateType) {
-        val content: String = when (type) {
-            UpdateType.TITLE -> binding.title.text.toString()
-            UpdateType.BODY -> binding.body.text.toString()
-        }
-        //
         val editText = EditText(context).apply {
-            setText(content)
+            setText(getText(type))
         }
         val alertDialog: AlertDialog? = activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -129,6 +124,13 @@ class DetailFragment : Fragment() {
         when (type) {
             UpdateType.TITLE -> binding.title.text = string
             UpdateType.BODY -> binding.body.text = string
+        }
+    }
+
+    private fun getText(type: UpdateType): String {
+        return when (type) {
+            UpdateType.TITLE -> binding.title.text.toString()
+            UpdateType.BODY -> binding.body.text.toString()
         }
     }
 
